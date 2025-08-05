@@ -303,8 +303,7 @@ if st.button("Lancer le calcul des paramètres spatio-temporaux"):
         DoubleAppui_m = round(np.mean(DoubleAppui),2)
         stdDoubleAppui_m = round(np.std(DoubleAppui),2)
     
-        liste = np.array([[LgPasRnorma, stdLgPasRnorma], [LgPasLnorma, stdLgPasLnorma], [Vmarche, 0], [Cadence_M, stdCadence_M], [DureeCycle_M, stdDureeCycle_M], [Appui_D_m, stdAppui_D_m], [Appui_G_m, stdAppui_G_m], [Oscillation_D_m, stdOscillation_D_m], [Oscillation_G_m, stdOscillation_G_m], [SimpleAppui_D_m, stdSimpleAppui_D_m], [SimpleAppui_G_m, stdSimpleAppui_G_m], [DoubleAppui_m, stdDoubleAppui_m]])
-        DATA = pd.DataFrame(liste)
+        DATA = pd.DataFrame(({"Moyenne":[LgPasRnorma, LgPasLnorma, Vmarche, Cadence_M, DureeCycle_M, Appui_D_m, Appui_G_m, Oscillation_D_m, Oscillation_G_m, SimpleAppui_D_m, SimpleAppui_G_m, DoubleAppui_m], "Ecart-type":[stdLgPasRnorma, stdLgPasLnorma, 0, stdCadence_M, stdDureeCycle_M, stdAppui_D_m, stdAppui_G_m, stdOscillation_D_m, stdOscillation_G_m, stdSimpleAppui_D_m, stdSimpleAppui_G_m, stdDoubleAppui_m]}))
     
     
         st.markdown("### 📊 Paramètres Spatio-temporaux")
