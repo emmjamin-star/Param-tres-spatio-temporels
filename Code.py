@@ -149,8 +149,6 @@ if st.button("Lancer le calcul des paramètres spatio-temporaux"):
         while len(rhee_cycle_start_indices) > len(rtoe_cycle_start_indices) : 
             rhee_cycle_start_indices = np.delete (rhee_cycle_start_indices, -1)
           
-        display(rhee_cycle_start_indices)
-        display(rtoe_cycle_start_indices)
           
         # Gauche 
         if  lhee_cycle_start_indices[0] > ltoe_cycle_start_indices [0] : 
