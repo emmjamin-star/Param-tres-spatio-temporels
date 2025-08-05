@@ -293,11 +293,11 @@ if st.button("Lancer le calcul des paramètres spatio-temporaux"):
         if rhee_cycle_start_indices [0] > lhee_cycle_start_indices [0] : 
             for i in range (0, len(rhee_cycle_start_indices)) : 
               a = ltoe_cycle_start_indices[i] - lhee_cycle_start_indices[i] - (rtoe_cycle_start_indices[i] - rhee_cycle_start_indices[i])
-              b = a / freq / DureeCycleD_m *100
+              b = abs(a / freq / DureeCycleD_m *100)
               DoubleAppui.append(b)
         elif rhee_cycle_start_indices [0] < lhee_cycle_start_indices [0] : 
               a = rtoe_cycle_start_indices[i] - rhee_cycle_start_indices[i] - (ltoe_cycle_start_indices[i] - lhee_cycle_start_indices[i])
-              b = a / freq / DureeCycleD_m *100
+              b = abs(a / freq / DureeCycleD_m *100)
               DoubleAppui.append(b)
           
         DoubleAppui_m = round(np.mean(DoubleAppui),2)
