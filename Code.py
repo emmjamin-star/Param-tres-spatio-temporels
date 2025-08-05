@@ -20,10 +20,6 @@ if uploaded_files:
     selected_file_dynamique = st.selectbox("Choisissez un fichier dynamique pour l'analyse", uploaded_files, format_func=lambda x: x.name)
 
     with tempfile.NamedTemporaryFile(delete=False, suffix=".c3d") as tmp:
-        tmp.write(selected_file_statique.read())
-        tmp_path = tmp.name
-
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".c3d") as tmp:
         tmp.write(selected_file_dynamique.read())
         tmpd_path = tmp.name
 
@@ -34,7 +30,11 @@ if uploaded_files:
     n_frames = acq1['data']['points'].shape[2]
     time_offset = first_frame / freq
     time = np.arange(n_frames) / freq + time_offset
-    
+
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".c3d") as tmp:
+        tmp.write(selected_file_statique.read())
+        tmp_path = tmp.name
+
     statique = ezc3d.c3d(tmp_path)  # acquisition statique
     labelsStat = statique['parameters']['POINT']['LABELS']['value']
     first_frameStat = statique['header']['points']['first_frame']
