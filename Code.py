@@ -46,7 +46,7 @@ if uploaded_files:
     markers1 = acq1['data']['points']
     data1 = acq1['data']['points']
   
-  if st.button("Lancer le calcul du score FAPS"):
+if st.button("Lancer le calcul des paramètres spatio-temporaux"):
     try:
         # Extraction des coordonnées
         a1, a2, b1, b2, c1, c2 = markersStat[:,labels.index('LASI'),:][0, 0], markersStat[:,labels.index('LANK'),:][0, 0], markersStat[:,labels.index('LASI'),:][1, 0], markersStat[:,labels.index('LANK'),:][1, 0], markersStat[:,labels.index('LASI'),:][2, 0], markersStat[:,labels.index('LANK'),:][2, 0]
