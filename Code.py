@@ -309,7 +309,7 @@ if st.button("Lancer le calcul des paramètres spatio-temporaux"):
         st.markdown("### 📊 Paramètres Spatio-temporaux")
         st.table(DATA)
         st.write(f"**Longueur Jambe gauche** : {LgJambeL:.2f} mm")
-        st.write(f"**Longueur Jambe droite** : {LgJambeD:.2f} mm")
+        st.write(f"**Longueur Jambe droite** : {LgJambeR:.2f} mm")
 
     except Exception as e:
         st.error(f"Erreur pendant l'analyse : {e}")
