@@ -37,10 +37,11 @@ if uploaded_files:
 
     statique = ezc3d.c3d(tmp_path)  # acquisition statique
     labelsStat = statique['parameters']['POINT']['LABELS']['value']
+    freqStat = statique['header']['points']['frame_rate']
     first_frameStat = statique['header']['points']['first_frame']
     n_framesStat = statique['data']['points'].shape[2]
-    time_offsetStat = first_frameStat / freq
-    timeStat = np.arange(n_framesStat) / freq + time_offsetStat
+    time_offsetStat = first_frameStat / freqStat
+    timeStat = np.arange(n_framesStat) / freqStat + time_offsetStat
     
     markersStat  = statique['data']['points']
     markers1 = acq1['data']['points']
