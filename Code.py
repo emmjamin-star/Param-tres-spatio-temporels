@@ -8,8 +8,8 @@ from scipy.interpolate import interp1d
 from sklearn.preprocessing import MinMaxScaler
 import tempfile
 
-st.set_page_config(page_title="Score FAPS", layout="centered")
-st.title("🦿 Score FAPS - Interface interactive")
+st.set_page_config(page_title="Paramètres Spatio-temporaux", layout="centered")
+st.title("🦿 Paramètres Spatio-temporaux - Interface interactive")
 
 # 1. Upload des fichiers .c3d
 st.header("1. Importer un ou plusieurs fichiers .c3d dont au moins un fichier d'essai statique et un d'essai dynamique")
@@ -309,7 +309,7 @@ if st.button("Lancer le calcul des paramètres spatio-temporaux"):
         DATA = pd.DataFrame(liste)
     
     
-        st.markdown("### 📊 Paramètres Spatio-temporels")
+        st.markdown("### 📊 Paramètres Spatio-temporaux")
         st.table(DATA)
 
     except Exception as e:
