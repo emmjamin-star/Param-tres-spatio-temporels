@@ -21,9 +21,9 @@ if uploaded_files:
 
     with tempfile.NamedTemporaryFile(delete=False, suffix=".c3d") as tmp:
         tmp.write(selected_file_statique.read())
-        tmp_path = tmp.name
+        statique_path = tmp.name
 
-    statique = ezc3d.c3d(tmp_path)  # acquisition statique
+    statique = ezc3d.c3d(statique_path)  # acquisition statique
     labelsStat = statique['parameters']['POINT']['LABELS']['value']
     freqStat = statique['header']['points']['frame_rate']
     first_frameStat = statique['header']['points']['first_frame']
@@ -35,9 +35,9 @@ if uploaded_files:
 
     with tempfile.NamedTemporaryFile(delete=False, suffix=".c3d") as tmp:
         tmp.write(selected_file_dynamique.read())
-        tmpd_path = tmp.name
+        dynamique_path = tmp.name
 
-    acq1 = ezc3d.c3d(tmpd_path)  # acquisition dynamique
+    acq1 = ezc3d.c3d(dynamique_path)  # acquisition dynamique
     labels = acq1['parameters']['POINT']['LABELS']['value']
     freq = acq1['header']['points']['frame_rate']
     first_frame = acq1['header']['points']['first_frame']
@@ -47,7 +47,17 @@ if uploaded_files:
     
     markers1 = acq1['data']['points']
     data1 = acq1['data']['points']
-  
+
+# Extraction des coordonnées
+a1, a2, b1, b2, c1, c2 = markersStat[:,labels.index('LASI'),:][0, 0], markersStat[:,labels.index('LANK'),:][0, 0], markersStat[:,labels.index('LASI'),:][1, 0], markersStat[:,labels.index('LANK'),:][1, 0], markersStat[:,labels.index('LASI'),:][2, 0], markersStat[:,labels.index('LANK'),:][2, 0]
+LgJambeL = np.sqrt((a2-a1)*(a2-a1)+(b2-b1)*(b2-b1)+(c2-c1)*(c2-c1))
+
+d1, d2, e1, e2, f1, f2 = markersStat[:,labels.index('RASI'),:][0, 0], markersStat[:,labels.index('RANK'),:][0, 0], markersStat[:,labels.index('RASI'),:][1, 0], markersStat[:,labels.index('RANK'),:][1, 0], markersStat[:,labels.index('RASI'),:][2, 0], markersStat[:,labels.index('RANK'),:][2, 0]
+LgJambeR = np.sqrt((d2-d1)*(d2-d1)+(e2-e1)*(e2-e1)+(f2-f1)*(f2-f1))
+
+LargeurPelvis = np.abs(markersStat[:,labels.index('RASI'),:][1, 0] - markersStat[:,labels.index('LASI'),:][1, 0])
+# Détection event gauche
+
 if st.button("Lancer le calcul des paramètres spatio-temporaux"):
     try:
         # Extraction des coordonnées
