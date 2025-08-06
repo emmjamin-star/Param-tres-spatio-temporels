@@ -20,18 +20,6 @@ if uploaded_files:
     selected_file_dynamique = st.selectbox("Choisissez un fichier dynamique pour l'analyse", uploaded_files, format_func=lambda x: x.name)
 
     with tempfile.NamedTemporaryFile(delete=False, suffix=".c3d") as tmp:
-        tmp.write(selected_file_dynamique.read())
-        tmpd_path = tmp.name
-
-    acq1 = ezc3d.c3d(tmpd_path)  # acquisition dynamique
-    labels = acq1['parameters']['POINT']['LABELS']['value']
-    freq = acq1['header']['points']['frame_rate']
-    first_frame = acq1['header']['points']['first_frame']
-    n_frames = acq1['data']['points'].shape[2]
-    time_offset = first_frame / freq
-    time = np.arange(n_frames) / freq + time_offset
-
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".c3d") as tmp:
         tmp.write(selected_file_statique.read())
         tmp_path = tmp.name
 
@@ -42,8 +30,21 @@ if uploaded_files:
     n_framesStat = statique['data']['points'].shape[2]
     time_offsetStat = first_frameStat / freqStat
     timeStat = np.arange(n_framesStat) / freqStat + time_offsetStat
-    
+
     markersStat  = statique['data']['points']
+
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".c3d") as tmp:
+        tmp.write(selected_file_dynamique.read())
+        tmpd_path = tmp.name
+
+    acq1 = ezc3d.c3d(tmpd_path)  # acquisition dynamique
+    labels = acq1['parameters']['POINT']['LABELS']['value']
+    freq = acq1['header']['points']['frame_rate']
+    first_frame = acq1['header']['points']['first_frame']
+    n_frames = acq1['data']['points'].shape[2]
+    time_offset = first_frame / freq
+    time = np.arange(n_frames) / freq + time_offset
+    
     markers1 = acq1['data']['points']
     data1 = acq1['data']['points']
   
