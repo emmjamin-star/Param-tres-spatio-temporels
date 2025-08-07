@@ -299,7 +299,7 @@ if st.button("Lancer le calcul des paramètres spatio-temporaux"):
               b = abs(a / freq / DureeCycleD_m *100)
               DoubleAppui.append(b)
         elif rhee_cycle_start_indices [0] < lhee_cycle_start_indices [0] : 
-            for i in range (0, len(rhee_cycle_start_indices)) :
+            for i in range (0, len(lhee_cycle_start_indices)) :
               a = rtoe_cycle_start_indices[i] - rhee_cycle_start_indices[i] - (ltoe_cycle_start_indices[i] - lhee_cycle_start_indices[i])
               b = abs(a / freq / DureeCycleD_m *100)
               DoubleAppui.append(b)
