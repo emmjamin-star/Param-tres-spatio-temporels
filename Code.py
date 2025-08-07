@@ -306,7 +306,7 @@ if st.button("Lancer le calcul des paramètres spatio-temporaux"):
         DoubleAppui_m = round(np.mean(DoubleAppui),2)
         stdDoubleAppui_m = round(np.std(DoubleAppui),2)
     
-        DATA = pd.DataFrame(({"Moyenne":[LgPasRnorma, LgPasLnorma, Vmarche, Cadence_M, DureeCycle_M, Appui_D_m, Appui_G_m, Oscillation_D_m, Oscillation_G_m, SimpleAppui_D_m, SimpleAppui_G_m, DoubleAppui_m], "Ecart-type":[stdLgPasRnorma, stdLgPasLnorma, 0, stdCadence_M, stdDureeCycle_M, stdAppui_D_m, stdAppui_G_m, stdOscillation_D_m, stdOscillation_G_m, stdSimpleAppui_D_m, stdSimpleAppui_G_m, stdDoubleAppui_m]}), index=["LgPasRnorma", "LgPasLnorma", "Vmarche", "Cadence_M", "DureeCycle_M", "Appui_D_m", "Appui_G_m", "Oscillation_D_m", "Oscillation_G_m", "SimpleAppui_D_m", "SimpleAppui_G_m", "DoubleAppui_m"])
+        DATA = pd.DataFrame(({"Moyenne":[LgPasRnorma, LgPasLnorma, Vmarche, Cadence_M, DureeCycle_M, Appui_D_m, Appui_G_m, Oscillation_D_m, Oscillation_G_m, SimpleAppui_D_m, SimpleAppui_G_m, DoubleAppui_m], "Ecart-type":[stdLgPasRnorma, stdLgPasLnorma, 0, stdCadence_M, stdDureeCycle_M, stdAppui_D_m, stdAppui_G_m, stdOscillation_D_m, stdOscillation_G_m, stdSimpleAppui_D_m, stdSimpleAppui_G_m, stdDoubleAppui_m]}), index=["LgPasRnorma (% de Lg jambe)", "LgPasLnorma (% de Lg jambe)", "Vmarche (m/s)", "Cadence_M (pas/s)", "DureeCycle_M (s)", "Appui_D_m (% du cycle de marche)", "Appui_G_m (% du cycle de marche)", "Oscillation_D_m (% du cycle de marche)", "Oscillation_G_m (% du cycle de marche)", "SimpleAppui_D_m (% du cycle de marche)", "SimpleAppui_G_m (% du cycle de marche)", "DoubleAppui_m (% du cycle de marche)"])
     
     
         st.markdown("### 📊 Paramètres Spatio-temporaux")
