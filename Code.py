@@ -231,43 +231,7 @@ if st.button("Lancer le calcul des paramètres spatio-temporaux"):
         DureeCycle_M = round(np.mean([DureeCycleD_m,DureeCycleG_m]),2)
         stdDureeCycle_M = round(np.std([stdDureeCycleD_m,stdDureeCycleG_m]),2)
     
-        # Phase d'appui 
-        # Droit : 
-        Appui_D = []
-        for i in range(0,len(rhee_cycle_start_indices)) : 
-            a = ((rtoe_cycle_start_indices[i] - rhee_cycle_start_indices[i]) / freq) / DureeCycleD_m *100
-            Appui_D.append(a)
-          
-        Appui_D_m = round(np.mean(Appui_D),2)
-        stdAppui_D_m = round(np.std(Appui_D),2)
-          
-        # Gauche : 
-        Appui_G = []
-        for i in range(0,len(lhee_cycle_start_indices)) : 
-            a = ((ltoe_cycle_start_indices[i] - lhee_cycle_start_indices[i]) / freq) / DureeCycleG_m *100
-            Appui_G.append(a)
-          
-        Appui_G_m = round(np.mean(Appui_G),2)
-        stdAppui_G_m = round(np.std(Appui_G),2)
-    
-        # Phase d'oscillation 
-        # Droit : 
-        Oscillation_D = []
-        for i in  Appui_D : 
-            b = 100 - i
-            Oscillation_D.append(b)
-          
-        Oscillation_D_m = round(np.mean(Oscillation_D),2)
-        stdOscillation_D_m = round(np.std(Oscillation_D),2)
-          
-        # Gauche : 
-        Oscillation_G = []
-        for i in  Appui_G : 
-            b = 100 - i
-            Oscillation_G.append(b)
-          
-        Oscillation_G_m = round(np.mean(Oscillation_G),2)
-        stdOscillation_G_m = round(np.std(Oscillation_G),2)
+        
     
         # Phase de simple appui et de double appui 
         # Simple appui droit 
@@ -306,7 +270,47 @@ if st.button("Lancer le calcul des paramètres spatio-temporaux"):
           
         DoubleAppui_m = round(np.mean(DoubleAppui),2)
         stdDoubleAppui_m = round(np.std(DoubleAppui),2)
-    
+
+        # Phase d'appui 
+        # Droit :
+        Appui_D = []
+        for i in SimpleAppui_D : 
+          a = i + DoubleAppui_m
+          Appui_D.append(a)
+        
+        Appui_D_m = round(np.mean(Appui_D),2)
+        stdAppui_D_m = round(np.std(Appui_D),2)
+
+        # Gauche 
+        Appui_G = []
+        for i in SimpleAppui_G : 
+          a = i + DoubleAppui
+          Appui_G.append(a)
+        
+        Appui_G_m = round(np.mean(Appui_G),2)
+        stdAppui_G_m = round(np.std(Appui_G),2)
+
+        # Phase d'oscillation 
+        # Droit : 
+        Oscillation_D = []
+        for i in  Appui_D : 
+            b = 100 - i
+            Oscillation_D.append(b)
+          
+        Oscillation_D_m = round(np.mean(Oscillation_D),2)
+        stdOscillation_D_m = round(np.std(Oscillation_D),2)
+          
+        # Gauche : 
+        Oscillation_G = []
+        for i in  Appui_G : 
+            b = 100 - i
+            Oscillation_G.append(b)
+          
+        Oscillation_G_m = round(np.mean(Oscillation_G),2)
+        stdOscillation_G_m = round(np.std(Oscillation_G),2)
+
+        
+        # Format tableau
         DATA = pd.DataFrame(({"Moyenne":[LgPasRnorma, LgPasLnorma, Vmarche, Cadence_M, DureeCycle_M, Appui_D_m, Appui_G_m, Oscillation_D_m, Oscillation_G_m, SimpleAppui_D_m, SimpleAppui_G_m, DoubleAppui_m], "Ecart-type":[stdLgPasRnorma, stdLgPasLnorma, 0, stdCadence_M, stdDureeCycle_M, stdAppui_D_m, stdAppui_G_m, stdOscillation_D_m, stdOscillation_G_m, stdSimpleAppui_D_m, stdSimpleAppui_G_m, stdDoubleAppui_m]}), index=["LgPasRnorma (% de Lg jambe)", "LgPasLnorma (% de Lg jambe)", "Vmarche (m/s)", "Cadence_M (pas/s)", "DureeCycle_M (s)", "Appui_D_m (% du cycle de marche)", "Appui_G_m (% du cycle de marche)", "Oscillation_D_m (% du cycle de marche)", "Oscillation_G_m (% du cycle de marche)", "SimpleAppui_D_m (% du cycle de marche)", "SimpleAppui_G_m (% du cycle de marche)", "DoubleAppui_m (% du cycle de marche)"])
     
     
